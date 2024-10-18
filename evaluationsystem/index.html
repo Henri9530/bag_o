@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Display Questions</title>
+    <script>
+      let questionCount = 0; // To track the number of questions
+
+      function displayQuestion() {
+        // Get the value from the input field
+        var question = document.getElementsByName("question")[0].value;
+
+        if (question.trim() !== "") {
+          // Ensure the question is not empty
+          questionCount++;
+
+          // Create a new div to display the question with numbering
+          var newQuestion = document.createElement("div");
+          newQuestion.textContent = questionCount + ". " + question;
+
+          // Append the new question to the question list
+          document.getElementById("questionList").appendChild(newQuestion);
+
+          // Clear the input field
+          document.getElementsByName("question")[0].value = "";
+        }
+
+        // Prevent form from submitting and refreshing the page
+        return false;
+      }
+    </script>
+  </head>
+  <body>
+    <!-- Input Form -->
+    <form onsubmit="return displayQuestion();">
+      <input
+        type="text"
+        name="question"
+        placeholder="Type your question"
+        required
+      />
+      <input type="submit" name="submit" value="Submit" />
+    </form>
+
+    <!-- Where the questions will be displayed -->
+    <div id="questionList"></div>
+  </body>
+</html>
